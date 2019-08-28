@@ -27,7 +27,8 @@
         "copy-code-button",
         "theme-comscore",
         "expandable-chapters",
-        "anchor-navigation-ex"
+        "anchor-navigation-ex",
+        "accordion"
     ],
     "pluginsConfig": {
         "prism": {
