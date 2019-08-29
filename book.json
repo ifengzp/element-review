@@ -34,7 +34,10 @@
         "prism": {
             "css": [
                 "prismjs/themes/prism-okaidia.css"
-            ]
+            ],
+            "lang": {
+                "shell": "bash"
+            }
         },
         "github": {
             "url": "https://github.com/ifengzp/element-review"
