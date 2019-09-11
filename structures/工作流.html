@@ -1,0 +1,509 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>工作流 · 解读 element组件库</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="aaron">
+        
+        
+    
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism-okaidia.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-sectionx/sectionx.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-accordion/accordion.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="生成文档和示例.html" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    
+        <link rel="shortcut icon" href='../favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../favicon.ico' type="image/x-icon">
+    
+    
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"ifengzp/element-review","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">框架搭建</li>
+        
+        
+    
+        <li class="chapter active" data-level="2.1" data-path="工作流.html">
+            
+                <a href="工作流.html">
+            
+                    
+                    工作流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="生成文档和示例.html">
+            
+                <a href="生成文档和示例.html">
+            
+                    
+                    生成文档和示例.md
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="初始化新组件.html">
+            
+                <a href="初始化新组件.html">
+            
+                    
+                    初始化新组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">组件</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >工作流</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#&#x57FA;&#x4E8E;vue-cli3"><b>1.1. </b>&#x57FA;&#x4E8E;vue-cli3</a></li><li><span class="title-icon "></span><a href="#&#x5F00;&#x53D1;&#x6D41;&#x7A0B;"><b>1.2. </b>&#x5F00;&#x53D1;&#x6D41;&#x7A0B;</a></li><li><span class="title-icon "></span><a href="#&#x4EE3;&#x7801;&#x89C4;&#x8303;"><b>1.3. </b>&#x4EE3;&#x7801;&#x89C4;&#x8303;</a></li><li><span class="title-icon "></span><a href="#&#x81EA;&#x52A8;&#x90E8;&#x7F72;"><b>1.4. </b>&#x81EA;&#x52A8;&#x90E8;&#x7F72;</a></li></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="&#x57FA;&#x4E8E;vue-cli3"><a name="&#x57FA;&#x4E8E;vue-cli3" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x4E8E;vue-cli3"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. &#x57FA;&#x4E8E;vue-cli3</h2>
+<p><code>steam-game-ui</code>&#x57FA;&#x4E8E;vue-cli3&#x642D;&#x5EFA;&#x7684;&#x811A;&#x624B;&#x67B6;&#x6765;&#x5F00;&#x53D1;&#x3002;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x628A;&#x7EC4;&#x4EF6;&#x5E93;&#x901A;&#x8FC7;lib&#x6A21;&#x5F0F;&#x6253;&#x5305;</p>
+<pre class="language-"><code class="lang-shell"><span class="token function">npm</span> run build:file <span class="token operator">&amp;&amp;</span> vue-cli-service build --target lib --name steam-game-ui --dest lib packages/index.js
+</code></pre>
+<p>&#x8FD8;&#x9700;&#x8981;&#x5728;<code>vue.config.js</code>&#x91CC;&#x9762;merge&#x522B;&#x540D;&#x914D;&#x7F6E;&#x548C;babel&#x8F6C;&#x4E49;</p>
+<pre class="language-"><code class="lang-js">config<span class="token punctuation">.</span>resolve<span class="token punctuation">.</span>alias
+    <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&apos;@&apos;</span><span class="token punctuation">,</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">&apos;examples&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&apos;src&apos;</span><span class="token punctuation">,</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">&apos;src&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&apos;packages&apos;</span><span class="token punctuation">,</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">&apos;packages&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&apos;examples&apos;</span><span class="token punctuation">,</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">&apos;examples&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+config<span class="token punctuation">.</span>module
+    <span class="token punctuation">.</span><span class="token function">rule</span><span class="token punctuation">(</span><span class="token string">&apos;js&apos;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>include<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token regex">/packages/</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>include<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token regex">/examples/</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">&apos;babel&apos;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">loader</span><span class="token punctuation">(</span><span class="token string">&apos;babel-loader&apos;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span><span class="token parameter">options</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> options<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="&#x5F00;&#x53D1;&#x6D41;&#x7A0B;"><a name="&#x5F00;&#x53D1;&#x6D41;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x5F00;&#x53D1;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. &#x5F00;&#x53D1;&#x6D41;&#x7A0B;</h2>
+<ul>
+<li>&#x5F00;&#x53D1;&#x65B0;&#x7EC4;&#x4EF6;&#x547D;&#x4EE4; <code>npm run new &#x7EC4;&#x4EF6;&#x540D; [&#x7EC4;&#x4EF6;&#x4E2D;&#x6587;&#x540D;]</code></li>
+</ul>
+<pre class="language-"><code class="lang-shell"><span class="token function">npm</span> run new button &#x6309;&#x94AE;
+<span class="token function">npm</span> run serve
+</code></pre>
+<ul>
+<li>&#x53D1;&#x5E03;&#x6B65;&#x9AA4;&#x1F447;</li>
+</ul>
+<pre class="language-"><code class="lang-shell"><span class="token function">npm</span> run <span class="token builtin class-name">test</span>
+<span class="token function">npm</span> version patch
+<span class="token function">npm</span> run lib
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> commit --amend
+<span class="token function">npm</span> publish
+</code></pre>
+<h2 id="&#x4EE3;&#x7801;&#x89C4;&#x8303;"><a name="&#x4EE3;&#x7801;&#x89C4;&#x8303;" class="anchor-navigation-ex-anchor" href="#&#x4EE3;&#x7801;&#x89C4;&#x8303;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3. &#x4EE3;&#x7801;&#x89C4;&#x8303;</h2>
+<ul>
+<li><code>.editorconfig</code>&#x914D;&#x7F6E;&#x1F447;</li>
+</ul>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">[</span>*.<span class="token punctuation">{</span>js<span class="token punctuation">,</span>jsx<span class="token punctuation">,</span>ts<span class="token punctuation">,</span>tsx<span class="token punctuation">,</span>vue<span class="token punctuation">}</span><span class="token punctuation">]</span>
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+</code></pre>
+<ul>
+<li><code>.prettierrc</code>&#x914D;&#x7F6E;&#x1F447;</li>
+</ul>
+<pre class="language-"><code class="lang-js"><span class="token punctuation">{</span>
+  <span class="token string">&quot;trailingComma&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;none&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;singleQuote&quot;</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;semi&quot;</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;tabWidth&quot;</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;semicolons&quot;</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;bracketSpacing&quot;</span><span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li><code>.eslintrc</code>&#x914D;&#x7F6E;&#x1F447;</li>
+</ul>
+<pre class="language-"><code class="lang-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  root<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  parserOptions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    parser<span class="token punctuation">:</span> <span class="token string">&apos;babel-eslint&apos;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  env<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    browser<span class="token punctuation">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token keyword">extends</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&apos;plugin:vue/essential&apos;</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;@vue/standard&apos;</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  rules<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&apos;prefer-promise-reject-errors&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;no-debugger&apos;</span><span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">&apos;production&apos;</span> <span class="token operator">?</span> <span class="token number">2</span> <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;arrow-parens&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;generator-star-spacing&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;space-before-function-paren&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;semi&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;error&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;always&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;indent&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;no-fallthrough&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;eqeqeq&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;one-var&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;no-extra-boolean-cast&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;camelcase&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;no-mixed-operators&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;eol-last&apos;</span><span class="token punctuation">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="&#x81EA;&#x52A8;&#x90E8;&#x7F72;"><a name="&#x81EA;&#x52A8;&#x90E8;&#x7F72;" class="anchor-navigation-ex-anchor" href="#&#x81EA;&#x52A8;&#x90E8;&#x7F72;"><i class="fa fa-link" aria-hidden="true"></i></a>1.4. &#x81EA;&#x52A8;&#x90E8;&#x7F72;</h2>
+<p>&#x5B98;&#x7F51;&#x76F4;&#x63A5;&#x90E8;&#x7F72;&#x5728;<code>github pages</code>&#x4E0A;&#xFF0C;&#x901A;&#x8FC7;<code>travis</code>&#x6765;&#x505A;&#x8DD1;&#x6D4B;&#x8BD5;&#x548C;&#x81EA;&#x52A8;&#x5316;&#x90E8;&#x7F72;</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">language</span><span class="token punctuation">:</span> node_js
+<span class="token key atrule">env</span><span class="token punctuation">:</span>
+  <span class="token key atrule">global</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">GH_REF</span><span class="token punctuation">:</span> github.com/meishaFE/steam<span class="token punctuation">-</span>game<span class="token punctuation">-</span>ui.git
+<span class="token key atrule">cache</span><span class="token punctuation">:</span>
+  <span class="token key atrule">directories</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> ~/.npm
+    <span class="token punctuation">-</span> node_modules
+<span class="token key atrule">node_js</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&apos;9&apos;</span>
+<span class="token key atrule">install</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> npm install
+<span class="token key atrule">script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> npm run test
+  <span class="token punctuation">-</span> npm run build
+<span class="token key atrule">after_script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> cd ./dist
+  <span class="token punctuation">-</span> git init
+  <span class="token punctuation">-</span> git add .
+  <span class="token punctuation">-</span> git commit <span class="token punctuation">-</span>m &quot;Travis CI Auto Builder&quot;
+  <span class="token punctuation">-</span> git push <span class="token punctuation">-</span><span class="token punctuation">-</span>force <span class="token punctuation">-</span><span class="token punctuation">-</span>quiet &quot;https<span class="token punctuation">:</span>//$<span class="token punctuation">{</span>TOKEN_AARON<span class="token punctuation">}</span>@$<span class="token punctuation">{</span>GH_REF<span class="token punctuation">}</span>&quot; master<span class="token punctuation">:</span>gh<span class="token punctuation">-</span>pages
+</code></pre>
+<footer class="page-footer"><span class="copyright">powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2019-09-12 00:10:40
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="生成文档和示例.html" class="navigation navigation-next " aria-label="Next page: 生成文档和示例.md">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"工作流","level":"2.1","depth":1,"next":{"title":"生成文档和示例.md","level":"2.2","depth":1,"path":"structures/生成文档和示例.md","ref":"structures/生成文档和示例.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","-highlight","prism","github@^2.0.0","github-buttons@2.1.0","favicon@^0.0.2","todo@^0.1.3","edit-link@^2.0.2","tbfed-pagefooter@^0.0.1","advanced-emoji","splitter","mermaid-gb3","puml","-sharing","sectionx","anchors","copy-code-button","theme-comscore","expandable-chapters","anchor-navigation-ex","accordion"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"shell":"bash"}},"github":{"url":"https://github.com/ifengzp/element-review"},"puml":{},"todo":{},"splitter":{},"accordion":{},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{"tag":"b"},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"theme-comscore":{},"github-buttons":{"repo":"ifengzp/element-review","types":["star"],"size":"small"},"copy-code-button":{},"advanced-emoji":{"embedEmojis":false},"edit-link":{"label":"编辑本页","base":"https://github.com/ifengzp/element-review/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"aaron","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"解读 element组件库","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"记录学习Element组件库过程中的疑问和收获"},"file":{"path":"structures/工作流.md","mtime":"2019-09-11T16:10:40.584Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-11T16:14:10.969Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sectionx/sectionx.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-accordion/accordionSelector.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+
+    </body>
+</html>
+

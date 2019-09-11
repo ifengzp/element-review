@@ -1,0 +1,585 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>初始化新组件 · 解读 element组件库</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="aaron">
+        
+        
+    
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism-okaidia.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-sectionx/sectionx.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-accordion/accordion.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="生成文档和示例.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../favicon.ico' type="image/x-icon">
+    
+    
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"ifengzp/element-review","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">框架搭建</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="工作流.html">
+            
+                <a href="工作流.html">
+            
+                    
+                    工作流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="生成文档和示例.html">
+            
+                <a href="生成文档和示例.html">
+            
+                    
+                    生成文档和示例.md
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.3" data-path="初始化新组件.html">
+            
+                <a href="初始化新组件.html">
+            
+                    
+                    初始化新组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">组件</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >初始化新组件</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x7EA6;&#x5B9A;&#x4F18;&#x4E8E;&#x914D;&#x7F6E;"><b>1. </b>&#x7EA6;&#x5B9A;&#x4F18;&#x4E8E;&#x914D;&#x7F6E;</a></li><ul><li><span class="title-icon "></span><a href="#&#x521B;&#x5EFA;&#x65B0;&#x6587;&#x4EF6;"><b>1.1. </b>&#x521B;&#x5EFA;&#x65B0;&#x6587;&#x4EF6;</a></li><li><span class="title-icon "></span><a href="#&#x81EA;&#x52A8;&#x5F15;&#x5165;&#x7EC4;&#x4EF6;"><b>1.2. </b>&#x81EA;&#x52A8;&#x5F15;&#x5165;&#x7EC4;&#x4EF6;</a></li><li><span class="title-icon "></span><a href="#&#x914D;&#x7F6E;&#x5BFC;&#x822A;"><b>1.3. </b>&#x914D;&#x7F6E;&#x5BFC;&#x822A;</a></li><li><span class="title-icon "></span><a href="#&#x914D;&#x7F6E;&#x8DEF;&#x7531;"><b>1.4. </b>&#x914D;&#x7F6E;&#x8DEF;&#x7531;</a></li><li><span class="title-icon "></span><a href="#&#x603B;&#x7ED3;"><b>1.5. </b>&#x603B;&#x7ED3;</a></li></ul></ul></div><a href="#&#x7EA6;&#x5B9A;&#x4F18;&#x4E8E;&#x914D;&#x7F6E;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x7EA6;&#x5B9A;&#x4F18;&#x4E8E;&#x914D;&#x7F6E;"><a name="&#x7EA6;&#x5B9A;&#x4F18;&#x4E8E;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#&#x7EA6;&#x5B9A;&#x4F18;&#x4E8E;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x7EA6;&#x5B9A;&#x4F18;&#x4E8E;&#x914D;&#x7F6E;</h1>
+<p>&#x7B80;&#x5355;&#x8BF4;&#x5C31;&#x662F;&#x7528;&#x7EA6;&#x5B9A;&#x597D;&#x7684;&#x89C4;&#x5219;&#x4F5C;&#x4E3A;&#x6846;&#x67B6;&#x6765;&#x5199;&#x4EE3;&#x7801;&#x3002;&#x5728;<code>steam-game-ui</code>&#x4E2D;&#x4E00;&#x4E2A;&#x6BCF;&#x6B21;&#x8981;&#x65B0;&#x52A0;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EC4;&#x4EF6;&#x8981;&#x505A;&#x4EE5;&#x4E0B;&#x51E0;&#x4EF6;&#x4E8B;&#xFF1A;</p>
+<ul>
+<li>&#x5F80;<code>packages</code>&#x6587;&#x4EF6;&#x5939;&#x91CC;&#x9762;&#x6DFB;&#x52A0;&#x7EC4;&#x4EF6;&#x6587;&#x4EF6;&#x3001;&#x6587;&#x6863;&#x548C;&#x5BFC;&#x51FA;&#x7EC4;&#x4EF6;&#x7684;<code>index.js</code></li>
+<li>&#x5728;&#x6253;&#x5305;&#x5165;&#x53E3;&#x5F15;&#x5165;&#x548C;&#x5BFC;&#x51FA;&#x65B0;&#x7EC4;&#x4EF6;</li>
+<li>&#x5F80;<code>examples</code>&#x6587;&#x4EF6;&#x5939;&#x91CC;&#x9762;&#x6DFB;&#x52A0;&#x8DEF;&#x7531;&#x5F15;&#x5165;&#x7EC4;&#x4EF6;&#x4EE5;&#x53CA;&#x6DFB;&#x52A0;&#x5BFC;&#x822A;</li>
+<li>&#x5F80;<code>tests</code>&#x6587;&#x4EF6;&#x5939;&#x91CC;&#x9762;&#x6DFB;&#x52A0;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x6587;&#x4EF6;</li>
+</ul>
+<p>&#x5B83;&#x4EEC;&#x7684;&#x914D;&#x7F6E;&#x90FD;&#x662F;&#x5206;&#x6563;&#x7684;&#xFF0C;&#x4E0D;&#x719F;&#x6089;&#x9879;&#x76EE;&#x7ED3;&#x6784;&#x7684;&#x4EBA;&#x5BB9;&#x6613;&#x5FFD;&#x7565;&#x5176;&#x4E2D;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x6B65;&#x9AA4;&#xFF0C;&#x800C;&#x4E14;&#x5206;&#x6563;&#x7684;&#x914D;&#x7F6E;&#x4E5F;&#x5BB9;&#x6613;&#x5BFC;&#x81F4;&#x51FA;&#x9519;&#xFF0C;&#x65F6;&#x95F4;&#x4E00;&#x957F;&#x6BCF;&#x6B21;&#x6DFB;&#x52A0;&#x7EC4;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x80FD;&#x8FD8;&#x5F97;&#x5148;&#x67E5;&#x770B;&#x4E00;&#x4E0B;&#x4EE3;&#x7801;&#x903B;&#x8F91;&#x3002;&#x6240;&#x4EE5;&#x5728;<code>steam-game-ui</code>&#x4E2D;&#x628A;&#x90E8;&#x5206;&#x914D;&#x7F6E;&#x5355;&#x72EC;&#x63D0;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x540C;&#x65F6;&#x65B0;&#x589E;<code>npm run new &#x7EC4;&#x4EF6;&#x540D; [&#x7EC4;&#x4EF6;&#x4E2D;&#x6587;&#x540D;]</code>&#x547D;&#x4EE4;&#x521D;&#x59CB;&#x5316;&#x65B0;&#x7684;&#x7EC4;&#x4EF6;&#x3002;</p>
+<h2 id="&#x521B;&#x5EFA;&#x65B0;&#x6587;&#x4EF6;"><a name="&#x521B;&#x5EFA;&#x65B0;&#x6587;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#&#x521B;&#x5EFA;&#x65B0;&#x6587;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. &#x521B;&#x5EFA;&#x65B0;&#x6587;&#x4EF6;</h2>
+<p>&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EC4;&#x4EF6;&#x9700;&#x8981;&#x65B0;&#x5EFA;&#x4EE5;&#x4E0B;&#x6587;&#x4EF6;&#xFF1A;<code>packages/&#x7EC4;&#x4EF6;/&#x7EC4;&#x4EF6;.vue</code>&#x3001;<code>packages/&#x7EC4;&#x4EF6;/index.js</code>&#x3001;<code>packages/&#x7EC4;&#x4EF6;/docs/index.md</code>&#x3001;<code>tests/specs/&#x7EC4;&#x4EF6;.spec.js</code>&#xFF0C;&#x4ED6;&#x4EEC;&#x7684;&#x521D;&#x59CB;&#x5316;&#x6A21;&#x677F;&#x90FD;&#x662F;&#x5171;&#x6027;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x83B7;&#x53D6;&#x7EC4;&#x4EF6;&#x7684;&#x540D;&#x79F0;&#x548C;&#x4E2D;&#x6587;&#x540D;&#x79F0;&#x5C31;&#x53EF;&#x4EE5;&#x751F;&#x6210;&#x4E86;&#xFF0C;&#x8FD9;&#x91CC;&#x62FF;<code>packages/&#x7EC4;&#x4EF6;/&#x7EC4;&#x4EF6;.vue</code>&#x4E3E;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x4F8B;&#x5B50;&#x1F447;</p>
+<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> Files <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    filename<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ComponentName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.vue</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    content<span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;template&gt;
+                &lt;div class=&quot;st-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>componentname<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&quot;&gt;&#x65B0;&#x7EC4;&#x4EF6;&lt;/div&gt;
+            &lt;/template&gt;
+            &lt;script&gt;
+                export default {
+                    name: &apos;St</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ComponentName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&apos;
+                };
+            &lt;/script&gt;</span><span class="token template-punctuation string">`</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token comment">// &#x521B;&#x5EFA; package</span>
+Files<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">file</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token function">fileSave</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>PackagePath<span class="token punctuation">,</span> file<span class="token punctuation">.</span>filename<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span>content<span class="token punctuation">,</span> <span class="token string">&apos;utf8&apos;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token string">&apos;\n&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x5199;&#x4E86;&#x4E00;&#x4E2A;<code>Files</code>&#x7684;&#x6A21;&#x677F;&#x5217;&#x8868;&#xFF0C;&#x7136;&#x540E;&#x6BCF;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x9700;&#x8981;&#x63D0;&#x4F9B;<code>filename</code>&#x6A21;&#x677F;&#x8DEF;&#x5F84;&#x548C;<code>content</code>&#x6A21;&#x677F;&#x5185;&#x5BB9;&#xFF0C;&#x7136;&#x540E;&#x904D;&#x5386;&#x5217;&#x8868;&#x7528;<code>fs</code>&#x751F;&#x6210;&#x5BF9;&#x5E94;&#x7684;&#x6587;&#x4EF6;&#x3002;&#x5176;&#x4ED6;&#x7684;&#x6587;&#x4EF6;&#x4E5F;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5F80;<code>Files</code>&#x5217;&#x8868;&#x91CC;&#x9762;&#x65B0;&#x589E;&#x6A21;&#x677F;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x5177;&#x4F53;&#x7684;&#x6A21;&#x677F;&#x53C2;&#x8003;<code>build/new.js</code>&#x91CC;&#x9762;&#x7684;&#x914D;&#x7F6E;&#x3002;</p>
+<h2 id="&#x81EA;&#x52A8;&#x5F15;&#x5165;&#x7EC4;&#x4EF6;"><a name="&#x81EA;&#x52A8;&#x5F15;&#x5165;&#x7EC4;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#&#x81EA;&#x52A8;&#x5F15;&#x5165;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. &#x81EA;&#x52A8;&#x5F15;&#x5165;&#x7EC4;&#x4EF6;</h2>
+<p>&#x5728;&#x6253;&#x5305;&#x5165;&#x53E3;&#x7684;<code>packages/index.js</code>&#x9700;&#x8981;&#x5F15;&#x7528;&#x548C;&#x5BFC;&#x51FA;&#x7EC4;&#x4EF6;&#xFF0C;&#x540C;&#x65F6;&#x8FD8;&#x9700;&#x8981;&#x5BFC;&#x51FA;&#x4E00;&#x4E2A;<code>install</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5728;<code>install</code>&#x4E2D;&#x9664;&#x4E86;&#x90E8;&#x5206;&#x7EC4;&#x4EF6;&#x6709;&#x6307;&#x4EE4;&#x6216;&#x8005;&#x670D;&#x52A1;&#x7684;&#x65B9;&#x5F0F;&#x8C03;&#x7528;&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x90FD;&#x662F;&#x6CE8;&#x518C;&#x4E00;&#x4E0B;&#x7EC4;&#x4EF6;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x6240;&#x6709;&#x7684;&#x7EC4;&#x4EF6;&#x5217;&#x6210;&#x4E00;&#x4EFD;&#x7EC4;&#x4EF6;&#x6E05;&#x5355;<code>components.json</code>&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;&#x8FD9;&#x4EFD;&#x7EC4;&#x4EF6;&#x6E05;&#x5355;&#x548C;&#x6A21;&#x677F;&#x53BB;&#x81EA;&#x52A8;&#x751F;&#x6210;<code>packages/index.js</code>&#xFF0C;&#x56E0;&#x4E3A;&#x6307;&#x4EE4;&#x548C;&#x670D;&#x52A1;&#x8C03;&#x7528;&#x7684;&#x7EC4;&#x4EF6;&#x6709;&#x9650;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x90E8;&#x5206;&#x7684;&#x8C03;&#x7528;&#x6211;&#x4EEC;&#x8FD8;&#x662F;&#x5199;&#x6B7B;&#x5728;&#x6A21;&#x677F;&#x91CC;&#x9762;&#x3002;&#x8FD9;&#x5757;&#x7684;&#x5DE5;&#x4F5C;&#x56E0;&#x4E3A;&#x5C31;&#x662F;&#x6253;&#x5305;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x6211;&#x653E;&#x5728;<code>build\build-entry.js</code>&#x91CC;&#x9762;&#xFF0C;&#x540C;&#x65F6;&#x56E0;&#x4E3A;&#x9700;&#x8981;&#x7528;&#x5230;&#x63D2;&#x503C;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x5F15;&#x64CE;&#xFF0C;&#x904D;&#x5386;<code>components.json</code>&#x7136;&#x540E;&#x6E32;&#x67D3;&#x6A21;&#x677F;&#xFF0C;&#x6700;&#x540E;&#x901A;&#x8FC7;<code>fs</code>&#x53BB;&#x751F;&#x6210;&#x6587;&#x4EF6;&#x3002;</p>
+<p><code>components.json</code>&#x7684;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x8FC7;&#x7A0B;&#x548C;&#x4E0A;&#x9762;&#x7684;&#x751F;&#x6210;&#x6587;&#x4EF6;&#x4E00;&#x6837;</p>
+<pre class="language-"><code class="lang-json"><span class="token punctuation">{</span>
+  <span class="token property">&quot;button&quot;</span><span class="token operator">:</span> <span class="token string">&quot;packages/button/index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;icon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;packages/icon/index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;loading&quot;</span><span class="token operator">:</span> <span class="token string">&quot;packages/loading/index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;packages/message/index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;clickoutside&quot;</span><span class="token operator">:</span> <span class="token string">&quot;packages/clickoutside/index.js&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><code>build\build-entry.js</code>&#x5305;&#x62EC;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x548C;&#x6A21;&#x677F;&#x7684;&#x63D2;&#x503C;&#x903B;&#x8F91;&#xFF0C;&#x7136;&#x540E;&#x751F;&#x6210;&#x6587;&#x4EF6;&#xFF0C;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#x1F447;</p>
+<div class="accordion accordionClose"><div class="accordionButton"><div class="accordionTitle">&#x70B9;&#x51FB;&#x67E5;&#x770B;&#x6298;&#x53E0;&#x4EE3;&#x7801;</div><div class="accordionSpinnerBox"><div class="accordionSpinner"></div></div></div><div class="accordionContent">
+<pre class="language-"><code class="lang-js"><span class="token keyword">var</span> components <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;./../components.json&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;fs&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> render <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;json-templater/string&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> uppercamelcase <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;uppercamelcase&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;path&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> endOfLine <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;os&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token constant">EOL</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> <span class="token constant">OUTPUT_PATH</span> <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">&apos;./../packages/index.js&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token constant">IMPORT_TEMPLATE</span> <span class="token operator">=</span> <span class="token string">&apos;import {{name}} from \&apos;packages/{{package}}/index.js\&apos;;&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token constant">INSTALL_COMPONENT_TEMPLATE</span> <span class="token operator">=</span> <span class="token string">&apos;  {{name}}&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token constant">MAIN_TEMPLATE</span> <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/* Automatically generated by &apos;./build/gen-components-index.js&apos; */
+{{include}}
+import &apos;src/style/icon.scss&apos;;
+
+const components = [
+{{install}}
+];
+
+const install = function (Vue, opts = {}) {
+  components.forEach(component =&gt; {
+    Vue.component(component.name, component);
+  });
+  Vue.use(Loading.directive);
+  Vue.directive(&apos;clickoutside&apos;, Clickoutside);
+  Vue.prototype.$message = Message;
+  Vue.prototype.$loading = Loading.service;
+};
+
+if (typeof window !== &apos;undefined&apos; &amp;&amp; window.Vue) {
+  install(window.Vue);
+}
+
+export default {
+  version: &apos;{{version}}&apos;,
+  install,
+{{list}}
+};
+</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> componentNames <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>components<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> includeComponentTemplate <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> installTemplate <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> listTemplate <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+componentNames<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">name</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> componentName <span class="token operator">=</span> <span class="token function">uppercamelcase</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  includeComponentTemplate<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token constant">IMPORT_TEMPLATE</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> componentName<span class="token punctuation">,</span>
+    <span class="token keyword">package</span><span class="token punctuation">:</span> name
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;Loading&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Message&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Clickoutside&apos;</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>componentName<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    installTemplate<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token constant">INSTALL_COMPONENT_TEMPLATE</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      name<span class="token punctuation">:</span> componentName<span class="token punctuation">,</span>
+      component<span class="token punctuation">:</span> name
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;Loading&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Message&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Clickoutside&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Icon&apos;</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>componentName<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    listTemplate<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">  </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>componentName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token constant">MAIN_TEMPLATE</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  include<span class="token punctuation">:</span> includeComponentTemplate<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>endOfLine<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  install<span class="token punctuation">:</span> installTemplate<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">&apos;,&apos;</span> <span class="token operator">+</span> endOfLine<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  version<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">VERSION</span> <span class="token operator">||</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;./../package.json&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span>version<span class="token punctuation">,</span>
+  list<span class="token punctuation">:</span> listTemplate<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">&apos;,&apos;</span> <span class="token operator">+</span> endOfLine<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+fs<span class="token punctuation">.</span><span class="token function">writeFileSync</span><span class="token punctuation">(</span><span class="token constant">OUTPUT_PATH</span><span class="token punctuation">,</span> template<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</div></div>
+<h2 id="&#x914D;&#x7F6E;&#x5BFC;&#x822A;"><a name="&#x914D;&#x7F6E;&#x5BFC;&#x822A;" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;&#x5BFC;&#x822A;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3. &#x914D;&#x7F6E;&#x5BFC;&#x822A;</h2>
+<p>&#x8FD9;&#x4E00;&#x5757;&#x4E5F;&#x5355;&#x72EC;&#x62BD;&#x6210;&#x4E00;&#x4E2A;&#x901A;&#x7528;&#x914D;&#x7F6E;<code>nav.config.json</code>&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x4EC5;&#x6709;&#x7EC4;&#x4EF6;&#x7684;&#x5BFC;&#x822A;&#x4E5F;&#x6709;&#x4E00;&#x4E9B;&#x516C;&#x5171;&#x7684;&#x6587;&#x6863;&#x7684;&#x5BFC;&#x822A;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5355;&#x72EC;&#x7528;&#x4E00;&#x4E2A;<code>components</code>&#x5B57;&#x6BB5;&#x6765;&#x7EF4;&#x62A4;&#x7EC4;&#x4EF6;&#x7684;&#x5BFC;&#x822A;&#xFF0C;&#x5728;new&#x65B0;&#x7EC4;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x5F80;<code>components</code>&#x91CC;&#x9762;push&#x65B0;&#x7684;&#x7EC4;&#x4EF6;&#x3002;&#x5728;&#x5B98;&#x7F51;&#x91CC;&#x9762;&#x53EA;&#x9700;&#x8981;&#x8BFB;&#x53D6;&#x8FD9;&#x4EFD;json&#x7136;&#x540E;&#x6DFB;&#x52A0;&#x5230;&#x5BFC;&#x822A;&#x4E0A;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+<pre class="language-"><code class="lang-json"><span class="token punctuation">{</span>
+    <span class="token property">&quot;guide&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&#x5F00;&#x53D1;&#x6307;&#x5357;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;children&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&#x5FEB;&#x901F;&#x4E0A;&#x624B;&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/quickstart&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;docsPath&quot;</span><span class="token operator">:</span> <span class="token string">&quot;examples/guide/quickstart.md&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&#x53C2;&#x4E0E;&#x5F00;&#x53D1;&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/develop&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;docsPath&quot;</span><span class="token operator">:</span> <span class="token string">&quot;examples/guide/develop.md&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;components&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&#x7EC4;&#x4EF6;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;children&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Icon &#x56FE;&#x6807;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/icon&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;docsPath&quot;</span><span class="token operator">:</span> <span class="token string">&quot;packages/icon/docs/index.md&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Button &#x6309;&#x94AE;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/button&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;docsPath&quot;</span><span class="token operator">:</span> <span class="token string">&quot;packages/button/docs/index.md&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x65B0;&#x7EC4;&#x4EF6;&#x7684;&#x6DFB;&#x52A0;&#x903B;&#x8F91;&#x1F447;</p>
+<pre class="language-"><code class="lang-js"><span class="token comment">// &#x6DFB;&#x52A0;&#x5230; nav.config.json</span>
+<span class="token keyword">const</span> navConfigFile <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;./../examples/nav.config.json&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+navConfigFile<span class="token punctuation">[</span><span class="token string">&apos;components&apos;</span><span class="token punctuation">]</span><span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> componentname <span class="token operator">!==</span> chineseName <span class="token operator">?</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ComponentName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>chineseName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">:</span> ComponentName<span class="token punctuation">,</span>
+  path<span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>componentname<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  docsPath<span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">packages/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>componentname<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/docs/index.md</span><span class="token template-punctuation string">`</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fileSave</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">&apos;./../examples/nav.config.json&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>navConfigFile<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&apos;  &apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&apos;utf8&apos;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token string">&apos;\n&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="&#x914D;&#x7F6E;&#x8DEF;&#x7531;"><a name="&#x914D;&#x7F6E;&#x8DEF;&#x7531;" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;&#x8DEF;&#x7531;"><i class="fa fa-link" aria-hidden="true"></i></a>1.4. &#x914D;&#x7F6E;&#x8DEF;&#x7531;</h2>
+<p>&#x8DEF;&#x7531;&#x7684;&#x914D;&#x7F6E;&#x540C;&#x6837;&#x4E5F;&#x662F;&#x4F9D;&#x636E;<code>nav.config.json</code>&#x8FD9;&#x4EFD;&#x914D;&#x7F6E;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x628A;&#x6A21;&#x5757;&#x7684;&#x8DEF;&#x5F84;&#x901A;&#x8FC7;&#x53D8;&#x91CF;&#x7684;&#x65B9;&#x5F0F;&#x63D0;&#x53D6;&#x51FA;&#x6765;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x8FD8;&#x4F1A;&#x6D89;&#x53CA;&#x5230;&#x4E00;&#x4E2A;&#x5173;&#x4E8E;<a href="https://webpack.docschina.org/guides/dependency-management/" target="_blank">&#x4F9D;&#x8D56;&#x7BA1;&#x7406;</a>&#x7684;&#x77E5;&#x8BC6;&#x70B9;&#x3002;&#x6211;&#x4EEC;&#x77E5;&#x9053;webpack&#x662F;&#x9759;&#x6001;&#x7F16;&#x8BD1;&#xFF0C;&#x5F53;<code>require</code>&#x7684;&#x8DEF;&#x5F84;&#x6709;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7F16;&#x8BD1;&#x9636;&#x6BB5;&#x65E0;&#x6CD5;&#x77E5;&#x9053;&#x8981;&#x5F15;&#x5165;&#x54EA;&#x4E9B;&#x6587;&#x4EF6;&#x3002;&#x4F46;&#x662F;webpack&#x4F1A;&#x6839;&#x636E;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x5185;&#x5BB9;&#x533A;&#x62C6;&#x5206;&#x6210;&#x4E00;&#x4E2A;&#x8DEF;&#x5F84;&#x548C;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x8DEF;&#x5F84;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x5168;&#x90E8;&#x5F15;&#x5165;&#xFF0C;&#x5F53;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x65F6;&#x5019;&#x518D;&#x53BB;&#x89E3;&#x6790;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x7136;&#x540E;&#x53BB;&#x5339;&#x914D;&#x5F15;&#x5165;&#x7684;&#x6587;&#x4EF6;&#x3002;&#x6240;&#x4EE5;<code>webpack</code>&#x80FD;&#x591F;&#x652F;&#x6301;&#x52A8;&#x6001;&#x5730;<code>require</code>&#xFF0C;&#x4F46;&#x4F1A;&#x5BFC;&#x81F4;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7528;&#x5230;&#x7684;&#x6A21;&#x5757;&#x90FD;&#x5305;&#x542B;&#x5728;<code>bundle</code> &#x4E2D;&#x3002;&#x4F46;&#x662F;&#x901A;&#x8FC7;<code>require.context</code>&#x53EF;&#x4EE5;&#x8BA9;&#x6211;&#x4EEC;&#x624B;&#x52A8;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7B26;&#x5408;&#x6211;&#x4EEC;&#x81EA;&#x5B9A;&#x4E49;&#x89C4;&#x5219;&#x7684;&#x5F15;&#x7528;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x80FD;&#x591F;&#x7CBE;&#x51C6;&#x5F97;&#x83B7;&#x53D6;&#x5230;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x7528;&#x5230;&#x7684;&#x6A21;&#x5757;&#x3002;&#x8BED;&#x6CD5;&#x5982;&#x4E0B;</p>
+<pre class="language-"><code class="lang-js">require<span class="token punctuation">.</span><span class="token function">context</span><span class="token punctuation">(</span>directory<span class="token punctuation">,</span> useSubdirectories <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> regExp <span class="token operator">=</span> <span class="token regex">/^\.\//</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x9879;&#x76EE;&#x5185;&#x7684;&#x5177;&#x4F53;&#x914D;&#x7F6E;&#x5982;&#x4E0B;&#x1F447;</p>
+<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">&apos;vue&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> navConfig <span class="token keyword">from</span> <span class="token string">&apos;./nav.config&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Router <span class="token keyword">from</span> <span class="token string">&apos;vue-router&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Home <span class="token keyword">from</span> <span class="token string">&apos;./views/Home.vue&apos;</span><span class="token punctuation">;</span>
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Router<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> navs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> componentsContext <span class="token operator">=</span> require<span class="token punctuation">.</span><span class="token function">context</span><span class="token punctuation">(</span><span class="token string">&apos;./../packages/&apos;</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token regex">/\.md/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> componentsContextKeys <span class="token operator">=</span> componentsContext<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> guideContext <span class="token operator">=</span> require<span class="token punctuation">.</span><span class="token function">context</span><span class="token punctuation">(</span><span class="token string">&apos;./../examples/&apos;</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token regex">/\.md/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> guideContextKeys <span class="token operator">=</span> guideContext<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>navConfig<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">group</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  navConfig<span class="token punctuation">[</span>group<span class="token punctuation">]</span><span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">nav</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>nav<span class="token punctuation">.</span>path <span class="token operator">&amp;&amp;</span> nav<span class="token punctuation">.</span>docsPath<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> docsPath <span class="token operator">=</span> nav<span class="token punctuation">.</span>docsPath<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/examples|packages/</span><span class="token punctuation">,</span> <span class="token string">&apos;.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">let</span> isGuide <span class="token operator">=</span> guideContextKeys<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>docsPath<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token keyword">let</span> isComponent <span class="token operator">=</span> componentsContextKeys<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>docsPath<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>isGuide <span class="token operator">||</span> isComponent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        navs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          path<span class="token punctuation">:</span> nav<span class="token punctuation">.</span>path<span class="token punctuation">,</span>
+          component<span class="token punctuation">:</span> isGuide <span class="token operator">?</span> <span class="token function">guideContext</span><span class="token punctuation">(</span>docsPath<span class="token punctuation">)</span><span class="token punctuation">.</span>default <span class="token punctuation">:</span> <span class="token function">componentsContext</span><span class="token punctuation">(</span>docsPath<span class="token punctuation">)</span><span class="token punctuation">.</span>default
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> router <span class="token operator">=</span> <span class="token punctuation">{</span>
+  mode<span class="token punctuation">:</span> <span class="token string">&apos;history&apos;</span><span class="token punctuation">,</span>
+  base<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">BASE_URL</span><span class="token punctuation">,</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      path<span class="token punctuation">:</span> <span class="token string">&apos;/&apos;</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">:</span> <span class="token string">&apos;home&apos;</span><span class="token punctuation">,</span>
+      component<span class="token punctuation">:</span> Home<span class="token punctuation">,</span>
+      children<span class="token punctuation">:</span> navs
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span>router<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="&#x603B;&#x7ED3;"><a name="&#x603B;&#x7ED3;" class="anchor-navigation-ex-anchor" href="#&#x603B;&#x7ED3;"><i class="fa fa-link" aria-hidden="true"></i></a>1.5. &#x603B;&#x7ED3;</h2>
+<p>&#x7ECF;&#x8FC7;&#x4E0A;&#x9762;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x80FD;&#x591F;&#x4F7F;&#x7528;<code>npm run new &#x7EC4;&#x4EF6;&#x540D; [&#x7EC4;&#x4EF6;&#x4E2D;&#x6587;&#x540D;]</code>&#x547D;&#x4EE4;&#x6765;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EC4;&#x4EF6;&#x4E86;&#xFF0C;&#x5177;&#x4F53;&#x7684;&#x4EE3;&#x7801;&#x67E5;&#x770B;<code>build/new.js</code> </p>
+<footer class="page-footer"><span class="copyright">powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2019-09-12 00:10:40
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="生成文档和示例.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 生成文档和示例.md">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"初始化新组件","level":"2.3","depth":1,"previous":{"title":"生成文档和示例.md","level":"2.2","depth":1,"path":"structures/生成文档和示例.md","ref":"structures/生成文档和示例.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","-highlight","prism","github@^2.0.0","github-buttons@2.1.0","favicon@^0.0.2","todo@^0.1.3","edit-link@^2.0.2","tbfed-pagefooter@^0.0.1","advanced-emoji","splitter","mermaid-gb3","puml","-sharing","sectionx","anchors","copy-code-button","theme-comscore","expandable-chapters","anchor-navigation-ex","accordion"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"shell":"bash"}},"github":{"url":"https://github.com/ifengzp/element-review"},"puml":{},"todo":{},"splitter":{},"accordion":{},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{"tag":"b"},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"theme-comscore":{},"github-buttons":{"repo":"ifengzp/element-review","types":["star"],"size":"small"},"copy-code-button":{},"advanced-emoji":{"embedEmojis":false},"edit-link":{"label":"编辑本页","base":"https://github.com/ifengzp/element-review/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"aaron","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"解读 element组件库","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"记录学习Element组件库过程中的疑问和收获"},"file":{"path":"structures/初始化新组件.md","mtime":"2019-09-11T16:10:40.584Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-11T16:14:10.969Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sectionx/sectionx.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-accordion/accordionSelector.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+
+    </body>
+</html>
+
